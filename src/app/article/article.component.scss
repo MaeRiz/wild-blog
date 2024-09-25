@@ -1,0 +1,22 @@
+.article {
+  width: 500px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  &--separator {
+    width: 80px;
+    height: 4px;
+    background-color: orange;
+    border-radius: 3px;
+    margin: 15px 0;
+  }
+
+  &:hover {
+    scale: 1.01;
+    cursor: pointer;
+  }
+
+  transition: scale 0.05s ease-in-out;
+}
