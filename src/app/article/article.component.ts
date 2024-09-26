@@ -60,6 +60,5 @@ export class ArticleComponent {
   togglePublication(index: number): void {
     this.articles[index].isPublished = !this.articles[index].isPublished;
     this.countVisibleArticle()
-    console.log("test")
   }
 }
