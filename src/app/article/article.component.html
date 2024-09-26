@@ -1,13 +1,22 @@
-<button (click)="togglePublication()">@if (article.isPublished){Dépublier l'article} @else {Publier l'article}</button>
-@if (article.isPublished){
-    <article class="article">
-        <img [src]="article.image">
-        <h3>{{ article.title }} - Par {{ article.author }}</h3>
-        <div class="article--separator"></div>
-        <p>{{ article.content }}</p>
-        <div class="article--separator"></div>
-        <h4>Commentaire</h4>
-        <p>{{ article.comment }}</p>
-        <input type="text" [(ngModel)]="article.comment">
-    </article>
-    }
+
+@for (article of articles; track $index){
+    <div>
+        <button (click)="togglePublication($index)">@if (article.isPublished){Dépublier l'article} @else {Publier l'article}</button>
+        @if (article.isPublished){
+        <article class="article">
+            <img [src]="article.image">
+            <div class="article--infobar"><p>Par {{ article.author }}</p><p>{{ article.likes }} ❤️</p></div>
+            <h3 [ngClass]="{'popular-article': article.likes > 100}" [ngStyle]="{'color': article.likes > 150 ? 'orangered': ''}">{{ article.title }}</h3>
+            <p [ngClass]="{'popular-article': article.likes > 100}">{{ article.content }}</p>
+            <div class="article--separator"></div>
+            <h4>Commentaire</h4>
+            <p>{{ article.comment }}</p>
+            <input type="text" [(ngModel)]="article.comment" placeholder="Ecrire un commentaire..">
+        </article>
+        }
+    </div>  
+}
+@if (visibleArticleLength == 0){
+    <p>Il n'y a aucun article publié</p>
+} 
+

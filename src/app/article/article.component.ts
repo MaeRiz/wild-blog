@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -8,27 +9,57 @@ interface Article {
   image: string;
   isPublished: boolean;
   comment?: string;
+  likes: number;
 }
 
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss'
 })
 
 export class ArticleComponent {
-  article: Article = {
-    title: 'Titre de l\'article',
-    author: 'John Doe',
-    content: 'Voici le contenu de l\'article.',
-    image: 'https://via.placeholder.com/350x150',
-    isPublished: true,
-    comment: ''
-  };
+  articles: Article[] = [
+    { 
+      title: 'Angular 16: Les nouveautés', 
+      author: 'Alice', 
+      content: 'Les nouveautés d\'Angular 16 incluent...', 
+      image: 'https://via.placeholder.com/350x150',
+      isPublished: true, 
+      comment: '', 
+      likes: 120 
+    },
+    { 
+      title: 'Développer une API REST', 
+      author: 'Bob', 
+      content: 'Développer une API REST nécessite...', 
+      image: 'https://via.placeholder.com/350x150',
+      isPublished: false, 
+      comment: '', 
+      likes: 75 
+    },
+    { 
+      title: 'Pourquoi TypeScript est essentiel ?', 
+      author: 'Charlie', 
+      content: 'TypeScript apporte de la robustesse...', 
+      image: 'https://via.placeholder.com/350x150',
+      isPublished: true, 
+      comment: '', 
+      likes: 200 
+    }
+  ];
 
-  togglePublication(): void {
-    this.article.isPublished = !this.article.isPublished;
+  visibleArticleLength = this.articles.filter((article) => article.isPublished).length
+
+  countVisibleArticle(): void{
+    this.visibleArticleLength = this.articles.filter((article) => article.isPublished).length
+  }
+
+  togglePublication(index: number): void {
+    this.articles[index].isPublished = !this.articles[index].isPublished;
+    this.countVisibleArticle()
+    console.log("test")
   }
 }
