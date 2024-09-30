@@ -44,13 +44,17 @@
 }
 
 button {
-  background-color: rgb(255, 108, 55);
-  border: 0;
-  border-radius: 5px;
   color: white;
-  font-weight: 700;
-  padding: 5px;
-  font-size: 17px;
-  cursor: pointer;
-  margin: 0 10px;
+  font-size: 20px;
+  padding: 10px;
+  background-color: orange;
+  border: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 5px;
+  margin-top: 50px;
+  &:hover {
+    cursor: pointer;
+    scale: 1.03;
+  }
+  transition: all 350ms ease;
 }

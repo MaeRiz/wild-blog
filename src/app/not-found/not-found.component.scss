@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
+
+  h2 {
+    font-size: 50px;
+  }
+  img {
+    width: 40%;
+  }
+  button {
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    background-color: orange;
+    border: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 5px;
+    margin-top: 50px;
+    &:hover {
+      cursor: pointer;
+      scale: 1.03;
+    }
+    transition: all 350ms ease;
+  }
+}
