@@ -36,6 +36,18 @@
     border-radius: 3px;
     margin: 15px 0;
   }
+
+  &--like {
+    &.liked {
+      color: red;
+    }
+    &:hover {
+      color: orangered;
+      scale: 1.02;
+      cursor: pointer;
+    }
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 .popular-article {

@@ -3,8 +3,13 @@
     <div class="article-container">
       @for (article of articles; track $index) {
         @if (article.isPublished){
-          <app-article [givenArticle]="article"/>
+          <app-article [givenArticle]="article" (notifyLike)="handleNotification($event)"/>
         }
       }
     </div>
 </main>
+@if (messageFromChild){
+  <div class="message">
+    <p>{{ messageFromChild }}</p>
+  </div>
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ArticleComponent } from '../article/article.component';
 import { articlesData } from '../data/articles.data';
+import { Article } from './../models/article.model';
 
 @Component({
   selector: 'app-home-page',
@@ -11,8 +12,16 @@ import { articlesData } from '../data/articles.data';
 })
 export class HomePageComponent {
 
-  articles = articlesData
-
+  articles: Article[] = articlesData
   title: string = 'Bienvenue sur le Wild Blog de Mahery !';
+  messageFromChild: string = '';
+
+  handleNotification(message: string) {
+    this.messageFromChild = message;
+    setTimeout(() => {
+      this.messageFromChild = '';
+    }, 2000);
+    ;
+  }
 
 }

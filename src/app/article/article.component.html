@@ -2,8 +2,17 @@
 <div>
     <article class="article">
         <img [src]="givenArticle.image">
-        <div class="article--infobar"><p>Par {{ givenArticle.author }}</p><p [ngStyle]="{'color': givenArticle.isPublished ? 'green': 'red'}" ><b>Article {{ givenArticle.isPublished ? 'publié' : 'non publié' }}</b></p><p>{{ givenArticle.likes }} ❤️</p></div>
-        <h3 [ngClass]="{'popular-article': givenArticle.likes > 100}" [ngStyle]="{'color': givenArticle.likes > 150 ? 'orangered': ''}">{{ givenArticle.title }}</h3>
+        <div class="article--infobar">
+            <p>Par {{ givenArticle.author }}</p>
+            <p [ngStyle]="{'color': givenArticle.isPublished ? 'green': 'red'}" >
+                <b>Article {{ givenArticle.isPublished ? 'publié' : 'non publié' }}</b>
+            </p>
+            <p (click)="handleLike()" class="article--like" [ngClass]="liked ? 'liked' : ''">
+                {{ givenArticle.likes }} <i [ngClass]="liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            </p>
+        </div>
+        <h3 [ngClass]="{'popular-article': givenArticle.likes > 100}" 
+            [ngStyle]="{'color': givenArticle.likes > 150 ? 'orangered': ''}">{{ givenArticle.title }}</h3>
         <p [ngClass]="{'popular-article': givenArticle.likes > 100}">{{ givenArticle.content }}</p>
         <div class="article--separator"></div>
         <h4>Commentaire</h4>
@@ -11,9 +20,4 @@
         <input type="text" [(ngModel)]="givenArticle.comment" placeholder="Ecrire un commentaire..">
         <button [routerLink]="['/article', givenArticle.id]">Voir l'article</button>
     </article>
-</div>  
-<!-- 
-@if (visibleArticleLength == 0){
-    <p>Il n'y a aucun article publié pour le moment</p>
-} 
- -->
+</div>
