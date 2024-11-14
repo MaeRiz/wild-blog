@@ -1,10 +1,9 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Article } from '../../models/article.model';
-import { articles_data } from '../../data/articles.data';
 import { ArticleThumbnailComponent } from '../article-thumbnail/article-thumbnail.component';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-article-list',
@@ -20,7 +19,7 @@ export class ArticleListComponent {
 
   messageFromChild: string = '';
 
-  http = inject(HttpClient);
+  api = inject(ApiService)
 
   handleNotification(message: string) {
     this.messageFromChild = message;
@@ -30,12 +29,8 @@ export class ArticleListComponent {
     ;
   }
 
-  getArticles(): void {
-    this.articles$ = this.http.get<Article[]>('http://localhost:3000/articles')
-  }
-
   ngOnInit() {
-    this.getArticles()
+    this.articles$ = this.api.getArticles()
   }
 
 }
