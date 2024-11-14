@@ -1,1 +1,14 @@
-<p>Page de l'article: {{ articleId }}</p>
+@if (article$ | async; as article) {
+    <div id="article-page-container">
+        <div class="heading">
+            <img [src]="article.image" [alt]="article.title">
+            <h1>{{ article.title }}</h1>
+        </div>
+        <p class="desc-title">Description</p>
+        <div class="separator"></div>
+        <p class="content">{{ article.content }}</p>
+    </div>
+    
+} @else {
+    <app-not-found/>
+}

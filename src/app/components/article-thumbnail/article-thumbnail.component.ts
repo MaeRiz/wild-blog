@@ -5,24 +5,23 @@ import { RouterLink } from '@angular/router';
 import { Article } from '../../models/article.model';
 
 @Component({
-  selector: 'app-article',
+  selector: 'app-article-thumbnail',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterLink, DatePipe],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.scss'
+  templateUrl: './article-thumbnail.component.html',
+  styleUrl: './article-thumbnail.component.scss'
 })
-
-export class ArticleComponent {
+export class ArticleThumbnailComponent {
 
   @Input() givenArticle!: Article;
   @Output() notifyLike: EventEmitter<string> = new EventEmitter<string>();
 
-  liked: boolean = false;
   comment: string = ''
 
   handleLike = ():void => {
-    this.liked ? this.givenArticle.likeCount -= 1 : this.givenArticle.likeCount += 1 
-    this.liked = !this.liked
-    this.notifyLike.emit((this.liked ? 'Vous venez de liké: ' : 'Vous venez de retirer votre like de: ')+ this.givenArticle.title );
+    this.givenArticle.isLiked ? this.givenArticle.likeCount -= 1 : this.givenArticle.likeCount += 1 
+    this.givenArticle.isLiked = !this.givenArticle.isLiked
+    this.notifyLike.emit((this.givenArticle.isLiked ? 'Vous venez de liké: ' : 'Vous venez de retirer votre like de: ')+ this.givenArticle.title );
   }
+
 }

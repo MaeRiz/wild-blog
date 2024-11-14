@@ -8,8 +8,8 @@
             <p [ngStyle]="{'color': givenArticle.isPublished ? 'green': 'red'}" >
                 <b>{{ givenArticle.isPublished ? 'Public' : 'Privé' }}</b>
             </p>
-            <p (click)="handleLike()" class="article--like" [ngClass]="liked ? 'liked' : ''">
-                {{ givenArticle.likeCount }} <i [ngClass]="liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            <p (click)="handleLike()" class="article--like" [ngClass]="givenArticle.isLiked ? 'liked' : ''">
+                {{ givenArticle.likeCount }} <i [ngClass]="givenArticle.isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
             </p>
         </div>
         <h3>{{ givenArticle.title }}</h3>
