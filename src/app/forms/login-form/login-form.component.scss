@@ -1,0 +1,103 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 80px;
+
+  form {
+    padding: 50px 70px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: whitesmoke;
+    border: 2px solid #f7156c3e;
+    border-radius: 20px;
+    box-shadow: #ff5c9b80 0px 4px 12px;
+    h1 {
+      margin: 20px 0 60px;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    img {
+      width: 200px;
+      align-self: center;
+      margin: 40px 0 60px 0;
+    }
+
+    .fieldset {
+      display: flex;
+      flex-direction: column;
+      margin: 15px 0;
+      label {
+        font-size: 20px;
+        font-weight: 600;
+        color: gray;
+        margin-left: 10px;
+      }
+
+      .fieldset-input {
+        width: 100%;
+        position: relative;
+        i {
+          position: absolute;
+          left: 20px;
+          top: 18px;
+          &.green {
+            color: rgb(101, 161, 101);
+          }
+          &.red {
+            color: red;
+          }
+        }
+        input {
+          padding: 10px 15px 10px 40px;
+          font-size: 18px;
+          border-radius: 10px;
+          width: 100%;
+          margin: 5px 0;
+          &:focus {
+            outline-color: #ff86b4;
+          }
+          &.ng-invalid {
+            border: 2px solid rgb(255, 145, 145);
+          }
+          &.ng-valid {
+            border: 2px solid rgb(101, 161, 101);
+          }
+          &.ng-untouched {
+            border: 2px solid #f7156b;
+          }
+        }
+      }
+      span {
+        color: rgb(255, 91, 91);
+        right: 0;
+      }
+    }
+  }
+
+  button {
+    color: white;
+    font-size: 22px;
+    padding: 8px;
+    background-color: #f7156b;
+    border: 0;
+    box-shadow: rgba(165, 162, 149, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    margin: 60px 0 0;
+    &:hover {
+      cursor: pointer;
+      scale: 1.03;
+    }
+    transition: all 350ms ease;
+
+    &:disabled,
+    &[disabled] {
+      background-color: gray;
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

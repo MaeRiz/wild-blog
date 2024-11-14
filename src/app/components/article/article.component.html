@@ -1,0 +1,23 @@
+
+<div>
+    <article class="article" [ngClass]="{'popular-article': givenArticle.likeCount > 150}">
+        <img [src]="givenArticle.image">
+        <p class="category">{{ givenArticle.categoryName }}</p>
+        <div class="article--infobar">
+            <p>{{ givenArticle.createdAt | date: 'dd/MM/YY' }}</p>
+            <p [ngStyle]="{'color': givenArticle.isPublished ? 'green': 'red'}" >
+                <b>{{ givenArticle.isPublished ? 'Public' : 'Privé' }}</b>
+            </p>
+            <p (click)="handleLike()" class="article--like" [ngClass]="liked ? 'liked' : ''">
+                {{ givenArticle.likeCount }} <i [ngClass]="liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            </p>
+        </div>
+        <h3>{{ givenArticle.title }}</h3>
+        <p>{{ givenArticle.content }}</p>
+        <div class="article--separator"></div>
+        <h4>Commentaire</h4>
+        <p>{{ comment }}</p>
+        <input type="text" [(ngModel)]="comment" placeholder="Ecrire un commentaire..">
+        <button [routerLink]="['/article', givenArticle.id]">Voir l'article</button>
+    </article>
+</div>

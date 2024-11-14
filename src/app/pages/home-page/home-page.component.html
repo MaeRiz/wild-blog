@@ -2,9 +2,10 @@
     <h1 class="title">{{ title }}</h1>
     <div class="article-container">
       @for (article of articles; track $index) {
-        @if (article.isPublished){
-          <app-article [givenArticle]="article" (notifyLike)="handleNotification($event)"/>
-        }
+
+        <app-article [givenArticle]="article" (notifyLike)="handleNotification($event)"/>
+      } @empty {
+        <p>Il n'y aucun article publié pour le moment</p>
       }
     </div>
 </main>

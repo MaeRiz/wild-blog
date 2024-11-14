@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ArticleComponent } from '../article/article.component';
-import { articlesData } from '../data/articles.data';
-import { Article } from './../models/article.model';
+import { ArticleComponent } from '../../components/article/article.component';
+import { articles_data } from '../../data/articles.data';
+import { Article } from '../../models/article.model';
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +12,7 @@ import { Article } from './../models/article.model';
 })
 export class HomePageComponent {
 
-  articles: Article[] = articlesData
+  articles: Article[] = articles_data
   title: string = 'Bienvenue sur le Wild Blog de Mahery !';
   messageFromChild: string = '';
 

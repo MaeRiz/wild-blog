@@ -1,0 +1,54 @@
+<div class="login-container">
+
+    <form #loginForm="ngForm" (ngSubmit)="loginForm.valid && onSubmit()">
+    <img src="wslogo.png" alt="">
+    <h1>Connexion</h1>
+      
+        <!-- Champ Email -->
+        <div class="fieldset">
+            <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+            <div class="fieldset-input">
+                <input id="email" name="email" type="email" [(ngModel)]="login.email" #email="ngModel" required email placeholder="Email">
+                @if (email.touched) {
+                <i [ngClass]="email.errors ? 'fa-solid fa-exclamation red' : 'fa-solid fa-check green'"></i>
+                }
+            </div>
+            @if (email.touched && email.errors) {
+            <div>
+                @if (email.errors['required']) {
+                <span>L'email est requis</span>
+                }
+                @if (email.errors['email']) {
+                <span>L'email est invalide</span>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Champ password -->
+        <div class="fieldset">
+            <label for="password"><i class="fa-solid fa-lock"></i> Mot de passe</label>
+            <div class="fieldset-input">
+                <input id="password" name="password" type="password" [(ngModel)]="login.password" #password="ngModel" required minlength="8" password placeholder="Mot de passe">
+                @if (password.touched) {
+                    <i [ngClass]="password.errors ? 'fa-solid fa-exclamation red' : 'fa-solid fa-check green'"></i>
+                    }
+            </div>
+            @if (password.touched && password.errors) {
+              <div>
+                  @if (password.errors['required']) {
+                      <span>Le mot de passe est requis</span>
+                    }
+                    @if (password.errors['minlength']) {
+                      <span>Le mot de passe doit faire minmum 8 caractères</span>
+                    }
+  
+              </div>
+            }
+        </div>
+
+      
+            <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+      
+      </form>
+</div>
