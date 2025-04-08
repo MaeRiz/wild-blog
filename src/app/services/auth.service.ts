@@ -39,6 +39,21 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
+  verifyToken(): void {
+    const token = this.getToken();
+    if (!token) return;
+
+    try {
+      const decodedToken: any = jwtDecode(token);
+      const expiryDate = new Date(decodedToken.exp * 1000);
+      if (expiryDate < new Date()) {
+        this.clearToken();
+      }
+    } catch {
+      this.clearToken();
+    }
+  }
+
   isLoggedIn(): boolean {
       const token = this.getToken();
       if (!token) return false;

@@ -8,21 +8,18 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (router.url == "/login" || router.url == "/signin"){
-    return next(req)
-  }
+  authService.verifyToken()
   
-  if (!authService.isLoggedIn()) {
-    router.navigate(['/login']);
-    return throwError(() => new Error('Token expiré'));
+  const token = authService.getToken();
+
+  if (token) {
+    const authReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return next(authReq);
   }
 
-  const token = authService.getToken();
-  const authReq = req.clone({
-    setHeaders: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return next(authReq);
+  return next(req);
 };
